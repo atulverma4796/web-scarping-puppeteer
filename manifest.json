@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "My Puppeteer Extension",
+  "version": "1.0",
+  "description": "Automate testing and form filling with Puppeteer",
+  "permissions": ["activeTab", "tabs", "scripting", "audioCapture"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": "icon.jpg",
+    "icons": {
+      "16": "icon.jpg",
+      "32": "icon.jpg",
+      "48": "icon.jpg",
+      "128": "icon.jpg"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://stackoverflow.com/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'",
+    "sandbox": "sandbox allow-scripts; script-src 'self'",
+    "web_accessible_resources": ["popup.js"]
+  }
+}
